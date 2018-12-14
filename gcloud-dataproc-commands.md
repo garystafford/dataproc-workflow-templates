@@ -14,7 +14,7 @@ gcloud components update
 # login and configure settings
 gcloud init
 
-# Create and run workflow
+# Create and run workflows on Windows 10
 
 set PROJECT_ID=dataproc-demo-224523
 set REGION=us-east1
@@ -99,5 +99,4 @@ gcloud dataproc workflow-templates instantiate-from-file ^
   --file template-demo.yaml ^
   --region %REGION% ^
   --async
-
 ```

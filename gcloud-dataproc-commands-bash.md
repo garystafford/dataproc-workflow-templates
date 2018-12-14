@@ -1,5 +1,5 @@
 ```bash
-# always good practice to keep up to dataset
+# good practice to keep the cloud sdk up-to-date
 gcloud components update
 
 # login and configure settings
@@ -9,9 +9,9 @@ gcloud init
 export PROJECT_ID=dataproc-demo-224523
 export REGION=us-east1
 export ZONE=us-east1-b
-export TEMPLATE_ID=template-demo
 export BUCKET_NAME=gs://dataproc-demo-bucket
 
+export TEMPLATE_ID=template-demo
 gcloud dataproc workflow-templates create \
   $TEMPLATE_ID --region $REGION
 
