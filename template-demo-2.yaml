@@ -2,15 +2,20 @@ jobs:
 - sparkJob:
     jarFileUris:
     - gs://dataproc-demo-bucket/dataprocJavaDemo-1.0-SNAPSHOT.jar
+    mainClass: org.example.dataproc.InternationalLoansAppDataprocSmall
+  stepId: ibrd-small-spark
+- sparkJob:
+    jarFileUris:
+    - gs://dataproc-demo-bucket/dataprocJavaDemo-1.0-SNAPSHOT.jar
     mainClass: org.example.dataproc.InternationalLoansAppDataprocLarge
-  stepId: ibrd-large-dataset-spark
+  stepId: ibrd-large-spark
 - pysparkJob:
     args:
     - gs://dataproc-demo-bucket
     - ibrd-statement-of-loans-historical-data.csv
-    - ibrd-loan-summary-large-python
+    - ibrd-summary-large-python
     mainPythonFileUri: gs://dataproc-demo-bucket/international_loans_dataproc.py
-  stepId: ibrd-large-dataset-pyspark
+  stepId: ibrd-large-pyspark
 placement:
   managedCluster:
     clusterName: three-node-cluster

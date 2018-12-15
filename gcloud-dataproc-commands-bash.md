@@ -98,7 +98,7 @@ gcloud dataproc operations list --region $REGION
 gcloud dataproc operations describe \
   projects/$PROJECT_ID/regions/$REGION/operations/c1d89aa5-c276-3a55-b46d-30592c8e59fe
 
-gcloud dataproc operations cancel ea993765-edba-4db5-8536-a864227408d7
+yes | gcloud dataproc operations cancel ea993765-edba-4db5-8536-a864227408d7
 
 yes | gcloud dataproc workflow-templates delete \
   $TEMPLATE_ID --region $REGION
@@ -114,4 +114,10 @@ command=$(gcloud dataproc jobs wait $SET_ID \
   --project $PROJECT_ID \
   --region $REGION) &>/dev/null
 if grep -Fqx "  state: FINISHED" <<< $command &>/dev/null;then echo "Success";else echo "Failure";fi
+
+if grep -Fqx "  state: FINISHED" <<<$command &>/dev/null; then
+  echo "Success"
+else
+  echo "Failure"
+fi
 ```
