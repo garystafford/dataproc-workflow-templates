@@ -10,7 +10,7 @@ export PROJECT_ID=dataproc-demo-224523
 export REGION=us-east1
 export ZONE=us-east1-b
 export BUCKET_NAME=gs://dataproc-demo-bucket
-  
+
 gsutil cp data/ibrd-statement-of-loans-*.csv $BUCKET_NAME
 gsutil cp build/libs/dataprocJavaDemo-1.0-SNAPSHOT.jar $BUCKET_NAME
 gsutil cp international_loans_dataproc_large.py $BUCKET_NAME
@@ -107,4 +107,11 @@ gcloud dataproc workflow-templates instantiate-from-file \
   --file template-demo.yaml \
   --region $REGION \
   --async
+
+export SET_ID=ibrd-large-dataset-pyspark-cxzzhr2ro3i54
+
+command=$(gcloud dataproc jobs wait $SET_ID \
+  --project $PROJECT_ID \
+  --region $REGION) &>/dev/null
+if grep -Fqx "  state: FINISHED" <<< $command &>/dev/null;then echo "Success";else echo "Failure";fi
 ```
