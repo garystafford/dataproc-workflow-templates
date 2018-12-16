@@ -1,0 +1,33 @@
+jobs:
+- pysparkJob:
+    args:
+    - storage_bucket_parameter
+    - data_file_parameter
+    - results_directory_parameter
+    mainPythonFileUri: main_python_file_parameter
+  stepId: ibrd-pyspark
+placement:
+  clusterSelector:
+    clusterLabels:
+      goog-dataproc-cluster-uuid: 577ab78d-30a3-487c-8f5b-63a3e455b759
+parameters:
+- description: Python script to run
+  fields:
+  - jobs['ibrd-pyspark'].pysparkJob.mainPythonFileUri
+  name: MAIN_PYTHON_FILE
+- description: Storage bucket location of data file and results
+  fields:
+  - jobs['ibrd-pyspark'].pysparkJob.args[0]
+  name: STORAGE_BUCKET
+  validation:
+    regex:
+      regexes:
+      - gs://.*
+- description: IBRD data file
+  fields:
+  - jobs['ibrd-pyspark'].pysparkJob.args[1]
+  name: IBRD_DATA_FILE
+- description: Result directory
+  fields:
+  - jobs['ibrd-pyspark'].pysparkJob.args[2]
+  name: RESULTS_DIRECTORY

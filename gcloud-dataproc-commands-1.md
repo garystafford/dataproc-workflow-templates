@@ -47,7 +47,7 @@ do
   time gcloud dataproc jobs submit pyspark \
       $BUCKET_NAME/international_loans_dataproc_large.py \
       --region=$REGION \
-      --cluster=$CLUSTER_1 \
+      --cluster=$CLUSTER_2 \
       --async
 done
 
@@ -84,4 +84,6 @@ sed -e '1s/fred/frog/' yourfile
 https://spark.apache.org/docs/latest/submitting-applications.html#master-urls
 
 https://github.com/apache/spark/blob/master/examples/src/main/java/org/apache/spark/examples/sql/JavaSQLDataSourceExample.java
+
+https://medium.com/google-cloud/dataproc-spark-cluster-on-gcp-in-minutes-3843b8d8c5f8
 ```
