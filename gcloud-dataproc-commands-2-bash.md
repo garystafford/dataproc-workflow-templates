@@ -15,7 +15,7 @@ gsutil cp data/ibrd-statement-of-loans-*.csv $BUCKET_NAME
 gsutil cp build/libs/dataprocJavaDemo-1.0-SNAPSHOT.jar $BUCKET_NAME
 gsutil cp international_loans_dataproc_large.py $BUCKET_NAME
 
-export TEMPLATE_ID=template-demo
+export TEMPLATE_ID=template-demo-1
 gcloud dataproc workflow-templates create \
   $TEMPLATE_ID --region $REGION
 
@@ -100,6 +100,11 @@ gcloud dataproc operations describe \
 
 yes | gcloud dataproc operations cancel ea993765-edba-4db5-8536-a864227408d7
 
+export TEMPLATE_ID=template-demo-1
+yes | gcloud dataproc workflow-templates delete \
+  $TEMPLATE_ID --region $REGION
+
+export TEMPLATE_ID=template-demo-3
 yes | gcloud dataproc workflow-templates delete \
   $TEMPLATE_ID --region $REGION
 
