@@ -1,0 +1,39 @@
+jobs:
+- sparkJob:
+    args:
+    - storage_bucket_parameter
+    - data_file_parameter
+    - results_directory_parameter
+    jarFileUris:
+    - jar_file_uri_parameter
+    mainClass: main_class_parameter
+  stepId: ibrd-spark
+placement:
+  clusterSelector:
+    clusterLabels:
+      goog-dataproc-cluster-uuid: 577ab78d-30a3-487c-8f5b-63a3e455b759
+parameters:
+- description: Java JAR location
+  fields:
+  - jobs['ibrd-spark'].sparkJob.jarFileUris
+  name: JAR_FILE_URI
+- description: Main Java class
+  fields:
+  - jobs['ibrd-spark'].sparkJob.mainClass
+  name: MAIN_CLASS
+- description: Storage bucket location of data file and results
+  fields:
+  - jobs['ibrd-spark'].sparkJob.args[0]
+  name: STORAGE_BUCKET
+  validation:
+    regex:
+      regexes:
+      - gs://.*
+- description: IBRD data file
+  fields:
+  - jobs['ibrd-spark'].sparkJob.args[1]
+  name: IBRD_DATA_FILE
+- description: Result directory
+  fields:
+  - jobs['ibrd-spark'].sparkJob.args[2]
+  name: RESULTS_DIRECTORY
